@@ -1,0 +1,52 @@
+[
+    {
+        "type": "Customer",
+        "attributes": {
+            "name": "Ярослав",
+            "phone": "89271791511",
+            "address": "Ташкентская д.35"
+        }
+    },
+    {
+        "type": "Employee",
+        "attributes": {
+            "name": "Петя",
+            "phone": "891245125",
+            "employee_id": "1"
+        }
+    },
+    {
+        "type": "DeliveryDriver",
+        "attributes": {
+            "name": "Григорий",
+            "phone": "8952314213",
+            "employee_id": "42",
+            "license_number": "г123иш4",
+            "vehicle": {
+                "vehicle_type": "УАЗ",
+                "registration_number": "453156",
+                "max_load": 100.0
+            },
+            "current_order": null
+        }
+    },
+    {
+        "type": "Order",
+        "attributes": {
+            "order_id": "5",
+            "customer": {
+                "name": "Ярик",
+                "phone": "891432252",
+                "address": "Ташкент"
+            },
+            "items": [
+                {
+                    "name": "Еда",
+                    "weight": 1.0,
+                    "price": 100.0
+                }
+            ],
+            "status": "Pending"
+        }
+    }
+]

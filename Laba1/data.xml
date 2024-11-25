@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<data>
+  <Customer>
+    <name>Ярослав</name>
+    <phone>89271791511</phone>
+    <address>Ташкентская д.35</address>
+  </Customer>
+  <Employee>
+    <name>Петя</name>
+    <phone>891245125</phone>
+    <employee_id>1</employee_id>
+  </Employee>
+  <DeliveryDriver>
+    <name>Григорий</name>
+    <phone>8952314213</phone>
+    <employee_id>42</employee_id>
+    <license_number>г123иш4</license_number>
+    <vehicle>{'vehicle_type': 'УАЗ', 'registration_number': '453156', 'max_load': 100.0}</vehicle>
+    <current_order>None</current_order>
+  </DeliveryDriver>
+  <Order>
+    <order_id>5</order_id>
+    <customer>{'name': 'Ярик', 'phone': '891432252', 'address': 'Ташкент'}</customer>
+    <items>[{'name': 'Еда', 'weight': 1.0, 'price': 100.0}]</items>
+    <status>Pending</status>
+  </Order>
+</data>
