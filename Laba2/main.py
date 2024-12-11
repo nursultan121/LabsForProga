@@ -41,7 +41,7 @@ class FRUIT:
     def draw_fruit(self):
         # Создаю ОВОЩ и рисую его
         fruit_rect = pygame.Rect(int(self.pos.x * cell_size), int(self.pos.y * cell_size), cell_size, cell_size)
-        screen.blit(apple,fruit_rect)
+        pygame.draw.rect(screen, pygame.Color('red'), fruit_rect)
     
     def randomize(self):
         self.x = random.randint(0,Cell_Number - 1)
@@ -86,30 +86,33 @@ class MAIN:
     def draw_score(self):
         text = "ЗМЕЙКА"
         text_surface = game_font2.render(text,False,(255,255,255))
-        screen.blit(text_surface, (250,690))
+        screen.blit(text_surface, (cell_size * 5,cell_size * 17))
         score_text = str(len(self.snake.body) - 3)
         score_surface = game_font.render(score_text,True,(255,255,255))
-        score_x = int(cell_size * Cell_Number - 60)
-        score_y = int(cell_size * Cell_Number - 40)
+        score_x = int(cell_size * Cell_Number - cell_size*1.5)
+        score_y = int(cell_size * Cell_Number - cell_size)
         score_rect = score_surface.get_rect(center = (score_x, score_y))
         screen.blit(score_surface, score_rect)
 
 
 
 pygame.init()
-cell_size = 40
+global SCALE
+global cell_size
+global Cell_Number
+SCALE = 1
+cell_size = 40 * SCALE
 Cell_Number = 20
-screen = pygame.display.set_mode((cell_size*Cell_Number,cell_size*Cell_Number))
+screen = pygame.display.set_mode((cell_size*Cell_Number,cell_size*Cell_Number), pygame.RESIZABLE)
 clock = pygame.time.Clock()
-apple = pygame.image.load('Graphics/apple.png').convert_alpha()
-game_font = pygame.font.Font('Graphics/impact2.ttf',25)
-game_font2 = pygame.font.Font('Graphics/impact2.ttf',100)
+game_font = pygame.font.Font('Graphics/impact2.ttf', int(cell_size * 1.25))
+game_font2 = pygame.font.Font('Graphics/impact2.ttf', int(cell_size * 2.5))
 
 SCREEN_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(SCREEN_UPDATE,150)
 main_game = MAIN()
 
-while True:
+while True: 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             main_game.game_over()
@@ -124,6 +127,19 @@ while True:
                 main_game.snake.direction = Vector2(-1,0)
             if event.key == pygame.K_RIGHT and main_game.snake.direction != Vector2(-1,0):
                 main_game.snake.direction = Vector2(1,0)
+            if event.key == pygame.K_1:
+                SCALE = 0.5
+                cell_size = 20
+                game_font = pygame.font.Font('Graphics/impact2.ttf', int(cell_size * 1.25))
+                game_font2 = pygame.font.Font('Graphics/impact2.ttf', int(cell_size * 2.5)) 
+                screen = pygame.display.set_mode((cell_size*Cell_Number,cell_size*Cell_Number), pygame.RESIZABLE)
+            if event.key == pygame.K_2:
+                SCALE = 1
+                cell_size = 40
+                game_font = pygame.font.Font('Graphics/impact2.ttf', int(cell_size * 1.25))
+                game_font2 = pygame.font.Font('Graphics/impact2.ttf', int(cell_size * 2.5)) 
+                screen = pygame.display.set_mode((cell_size*Cell_Number,cell_size*Cell_Number), pygame.RESIZABLE)
+
     screen.fill(pygame.Color('purple'))
     main_game.draw_elements()
     pygame.display.update()
